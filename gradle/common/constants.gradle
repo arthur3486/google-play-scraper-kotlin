@@ -1,0 +1,15 @@
+ext {
+    publishingGroupId = "com.arthurivanets"
+    publishingProjectUrl = "https://github.com/arthur3486/google-play-scraper-kotlin"
+    publishingLicenseName = "The Apache Software License, Version 2.0"
+    publishingLicenseUrl = "https://github.com/arthur3486/google-play-scraper-kotlin/blob/master/LICENSE"
+    publishingDeveloperId = "arthur3486"
+    publishingDeveloperName = "Arthur Ivanets"
+    publishingDeveloperEmail = "arthur.ivanets.work@gmail.com"
+    publishingScmConnection = "scm:git:github.com/arthur3486/google-play-scraper-kotlin.git"
+    publishingScmDeveloperConnection = "scm:git:ssh://github.com/arthur3486/google-play-scraper-kotlin.git"
+    publishingScmSiteUrl = "https://github.com/arthur3486/google-play-scraper-kotlin"
+    publishingHostRepoName = "sonatype"
+    publishingHostRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+    publishingLibraryDescription = "Library for scraping of the application data from the Google Play Store"
+}

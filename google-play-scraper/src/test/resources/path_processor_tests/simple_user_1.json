@@ -1,0 +1,8 @@
+{
+  "id": 123,
+  "username": "john.doe",
+  "name": {
+    "first_name": "John",
+    "last_name": "Doe"
+  }
+}

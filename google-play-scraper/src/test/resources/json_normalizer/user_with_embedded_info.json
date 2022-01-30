@@ -1,0 +1,10 @@
+{
+  "id": 123,
+  "username": "john.doe",
+  "name": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "middle_names": "[\"Johny\",\"Mark\",\"Josh\"]"
+  },
+  "meta": "{\"var0\":[1,2,3],\"var1\":\"[2,3]\"}"
+}

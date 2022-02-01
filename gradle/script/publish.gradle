@@ -1,19 +1,14 @@
 apply plugin: "maven-publish"
+apply plugin: "java-library"
 apply plugin: "signing"
 apply from: "${rootDir}/gradle/common/constants.gradle"
 
 group = PUBLISHING_GROUP_ID
 version = PUBLISHING_ARTIFACT_VERSION
 
-task libSourcesJar(type: Jar) {
-    archiveClassifier.set("sources")
-
-    from sourceSets.main.java.srcDirs
-    from sourceSets.main.kotlin.srcDirs
-}
-
-artifacts {
-    archives libSourcesJar
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 afterEvaluate {
@@ -25,7 +20,6 @@ afterEvaluate {
                 version PUBLISHING_ARTIFACT_VERSION
 
                 from components.java
-                artifact libSourcesJar
 
                 pom {
                     name = PUBLISHING_ARTIFACT_ID
@@ -71,6 +65,12 @@ afterEvaluate {
 
     signing {
         sign publishing.publications
+    }
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
     }
 }
 

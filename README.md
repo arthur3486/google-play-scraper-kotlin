@@ -2,6 +2,9 @@
 
 Library for scraping of the application data from the Google Play Store.
 
+[![Download](https://img.shields.io/maven-central/v/com.arthurivanets/google-play-scraper.svg?label=Download)](https://mvnrepository.com/search?q=com.arthurivanets.google-play-scraper)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # Related Projects
 
 The library was inspired by the following projects:
@@ -27,6 +30,8 @@ allprojects {
 ```
 
 Then, add the desired version of the `google-play-scraper` as a dependency:
+
+> ***Latest version:*** [![Download](https://img.shields.io/maven-central/v/com.arthurivanets/google-play-scraper.svg?label=Download)](https://mvnrepository.com/search?q=com.arthurivanets.google-play-scraper)
 
 ```groovy
 dependencies {

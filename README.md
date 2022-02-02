@@ -4,6 +4,7 @@ Library for scraping of the application data from the Google Play Store.
 
 [![Download](https://img.shields.io/maven-central/v/com.arthurivanets/google-play-scraper.svg?label=Download)](https://mvnrepository.com/search?q=com.arthurivanets.google-play-scraper)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build](https://github.com/arthur3486/google-play-scraper-kotlin/workflows/Build/badge.svg?branch=master)](https://github.com/arthur3486/google-play-scraper-kotlin/actions)
 
 # Related Projects
 
@@ -289,7 +290,7 @@ if (response.isSuccess) {
 All scraper methods interact with Google Play services in one way or another, 
 which means that all of them get impacted by the request throttling policies imposed by the Google Play itself.
 It is quite easy to exhaust the request quota and start getting the `503` responses with requesting entitiy verification captchas which,
-if not completed properly, might lead to a temporary ban of the requesting IP address, that usuauly lasts for about an hour.
+if not completed properly, might lead to a temporary ban of the requesting IP address (usually lasts for about an hour).
 So, it's a good idea to configure the client-side throttling in order to reduce the risk of running into the aforementioned problems.
 
 Throttling can be configured by providing an appropriate implementation of the `RequestThrottler` during the initialization of the `GooglePlayScraper`.

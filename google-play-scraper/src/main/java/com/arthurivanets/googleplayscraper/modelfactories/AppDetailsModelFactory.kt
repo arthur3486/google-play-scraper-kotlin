@@ -51,7 +51,7 @@ internal class AppDetailsModelFactory(
         val extractedData = pathProcessor.extract(rawItem, spec)
         val rawPrice = extractedData.getOrDefault(Key.PRICE, 0L)
         val isAppFree = (rawPrice == 0L)
-        val rawAppVersion = extractedData.require<String>(Key.ANDROID_VERSION)
+        val rawAppVersion = extractedData.getOrNull<String>(Key.ANDROID_VERSION)
         val screenshotUrlsContainer = extractedData.getOrNull<JsonArray>(Key.SCREENSHOTS_URLS_CONTAINER)
         val rawRatingsHistogram = extractedData.getOrNull<JsonArray>(Key.RATINGS_HISTOGRAM)
         val rawReleaseDate = extractedData.require<String>(Key.RELEASE_DATE)
@@ -78,8 +78,8 @@ internal class AppDetailsModelFactory(
             isAvailable = (extractedData.getOrNull<String>(Key.IS_AVAILABLE) != null),
             offersInAppPurchases = (extractedData.getOrNull<String>(Key.OFFERS_IAP) != null),
             inAppPurchasesPriceRange = extractedData.getOrNull(Key.IAP_PRICE_RANGE),
-            appSize = extractedData.require(Key.APP_SIZE),
-            androidVersion = rawAppVersion.normalizeAndroidVersion(),
+            appSize = "",//TODO Unavailable since 05/2022: extractedData.require(Key.APP_SIZE),
+            androidVersion = rawAppVersion?.normalizeAndroidVersion(),
             androidVersionText = rawAppVersion,
             developer = extractedData.require(Key.DEVELOPER),
             developerId = extractedData.require<String>(Key.DEVELOPER_ID).extractDeveloperId(),

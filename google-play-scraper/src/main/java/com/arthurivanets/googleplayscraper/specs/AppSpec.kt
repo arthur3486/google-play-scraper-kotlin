@@ -27,7 +27,6 @@ internal class AppSpec(
     val url: Path,
     val iconUrl: Path,
     val developer: Path,
-    val developerId: Path,
     val priceText: Path,
     val price: Path,
     val currency: Path,
@@ -42,7 +41,6 @@ internal class AppSpec(
         Key.URL to url,
         Key.ICON_URL to iconUrl,
         Key.DEVELOPER to developer,
-        Key.DEVELOPER_ID to developerId,
         Key.PRICE_TEXT to priceText,
         Key.PRICE to price,
         Key.CURRENCY to currency
@@ -58,7 +56,6 @@ internal class AppSpec(
         const val URL = "url"
         const val ICON_URL = "icon_url"
         const val DEVELOPER = "developer"
-        const val DEVELOPER_ID = "developer_id"
         const val PRICE_TEXT = "price_text"
         const val PRICE = "price"
         const val CURRENCY = "currency"

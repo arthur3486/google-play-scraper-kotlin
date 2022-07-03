@@ -70,7 +70,17 @@ class GooglePlayScraper(private val config: Config = Config()) {
     private val appsInitialRequestResultParser by lazy {
         AppsResultParser(
             responseSpec = Specs.APPS_INITIAL_RESPONSE,
-            appSpec = Specs.APP,
+            appSpec = Specs.APP_INITIAL_REQUEST,
+            pathProcessor = pathProcessor,
+            appModelFactory = appModelFactory,
+            responseJsonExtractor = responseJsonExtractor
+        )
+    }
+
+    private val appsDevIdNanInitialRequestResultParser by lazy {
+        AppsResultParser(
+            responseSpec = Specs.APPS_DEV_ID_NAN_INITIAL_RESPONSE,
+            appSpec = Specs.APP_DEV_ID_NAN,
             pathProcessor = pathProcessor,
             appModelFactory = appModelFactory,
             responseJsonExtractor = responseJsonExtractor
@@ -100,7 +110,7 @@ class GooglePlayScraper(private val config: Config = Config()) {
             allCollectionsSpec = Specs.ALL_COLLECTIONS,
             collectionsNewSpec = Specs.COLLECTIONS_NEW,
             collectionsTopSpec = Specs.COLLECTIONS_TOP,
-            appSpec = Specs.APP,
+            appSpec = Specs.APP_INITIAL_REQUEST,
             responseJsonExtractor = responseJsonExtractor,
             pathProcessor = pathProcessor,
             appModelFactory = appModelFactory
@@ -162,12 +172,18 @@ class GooglePlayScraper(private val config: Config = Config()) {
     fun getDeveloperApps(params: GetDeveloperAppsParams): Request<List<App>> {
         requestParamsValidator.validate(params)
 
+        val isDevIdNumeric = (params.devId.toLongOrNull() != null)
+
         return GetDeveloperAppsRequest(
             params = params,
             baseUrl = baseUrl,
             httpClient = httpClient,
             appsLoadingRequestFactory = appsLoadingRequestFactory,
-            initialAppsResultParser = appsInitialRequestResultParser,
+            initialAppsResultParser = if (isDevIdNumeric) {
+                appsInitialRequestResultParser
+            } else {
+                appsDevIdNanInitialRequestResultParser
+            },
             appsResultParser = appsResultParser
         )
     }

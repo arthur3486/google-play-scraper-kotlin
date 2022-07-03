@@ -25,13 +25,46 @@ internal object Specs {
     val CLUSTER_URL = path("ds:7", 1, 1, 0, 0, 3, 4, 2)
 
     val APPS_INITIAL_RESPONSE = AppsResponseSpec(
-        apps = path("ds:3", 0, 1, 0, 0, 0),
-        token = path("ds:3", 0, 1, 0, 0, 7, 1)
+        apps = path("ds:3", 0, 1, 0, 21, 0),
+        token = path("ds:3", 0, 1, 0, 21, 1, 3, 1),
+    )
+
+    val APPS_DEV_ID_NAN_INITIAL_RESPONSE = AppsResponseSpec(
+        apps = path("ds:3", 0, 1, 0, 22, 0),
+        token = path("ds:3", 0, 1, 0, 22, 1, 3, 1),
     )
 
     val APPS_RESPONSE = AppsResponseSpec(
         apps = path(0, 2, 0, 0, 0),
         token = path(0, 2, 0, 0, 7, 1)
+    )
+
+    val APP_INITIAL_REQUEST = AppSpec(
+        appId = path(0, 0),
+        title = path(3),
+        summary = path(13, 1),
+        score = path(4, 1),
+        scoreText = path(4, 0),
+        url = path(10, 4, 2),
+        iconUrl = path(1, 3, 2),
+        developer = path(14),
+        priceText = path(8, 1, 0, 2),
+        price = path(8, 1, 0, 0),
+        currency = path(8, 1, 0, 1),
+    )
+
+    val APP_DEV_ID_NAN = AppSpec(
+        appId = path(0, 0, 0),
+        title = path(0, 3),
+        summary = path(0, 13, 1),
+        score = path(0, 4, 1),
+        scoreText = path(0, 4, 0),
+        url = path(0, 10, 4, 2),
+        iconUrl = path(0, 1, 3, 2),
+        developer = path(0, 14),
+        priceText = path(0, 8, 1, 0, 2),
+        price = path(0, 8, 1, 0, 0),
+        currency = path(0, 8, 1, 0, 1),
     )
 
     val APP = AppSpec(
@@ -43,10 +76,9 @@ internal object Specs {
         url = path(9, 4, 2),
         iconUrl = path(1, 1, 0, 3, 2),
         developer = path(4, 0, 0, 0),
-        developerId = path(4, 0, 0, 1, 4, 2),
         priceText = path(7, 0, 3, 2, 1, 0, 2),
-        price = path(7, 0, 3, 2, 1, 0, 2),
-        currency = path(7, 0, 3, 2, 1, 0, 2),
+        price = path(7, 0, 3, 2, 1, 0, 0),
+        currency = path(7, 0, 3, 2, 1, 0, 1),
     )
 
     val APP_DETAILS = AppDetailsSpec(

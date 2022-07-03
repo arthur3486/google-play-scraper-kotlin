@@ -51,16 +51,12 @@ internal class AppModelFactory(
             url = (baseUrl + extractedData.require<String>(AppSpec.Key.URL)),
             iconUrl = extractedData.require(AppSpec.Key.ICON_URL),
             developer = extractedData.require(AppSpec.Key.DEVELOPER),
-            developerId = extractedData.require<String>(AppSpec.Key.DEVELOPER_ID).extractDeveloperId(),
+            developerId = "",
             priceText = priceText,
             price = price,
             currency = priceText?.extractCurrency(),
             isFree = (price == null)
         )
-    }
-
-    private fun String.extractDeveloperId(): String {
-        return this.split("?id=").lastOrNull() ?: this
     }
 
     private fun String.extractPrice(): Double? {

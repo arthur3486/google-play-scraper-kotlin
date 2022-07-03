@@ -19,8 +19,8 @@ package com.arthurivanets.googleplayscraper.requests
 import com.arthurivanets.googleplayscraper.model.App
 import com.arthurivanets.googleplayscraper.parsers.ResultParser
 import com.arthurivanets.googleplayscraper.util.PagedResult
-import com.arthurivanets.googleplayscraper.util.fetchContinuously
 import com.arthurivanets.googleplayscraper.util.ScraperError
+import com.arthurivanets.googleplayscraper.util.fetchContinuously
 import okhttp3.OkHttpClient
 import okhttp3.Request as OkHttpRequest
 import okhttp3.Response as OkHttpResponse
@@ -48,7 +48,7 @@ internal class GetDeveloperAppsRequest(
             initialRequestResultParser = initialAppsResultParser,
             subsequentRequestExecutor = ::executeAppsRequest,
             subsequentRequestResultParser = appsResultParser
-        )
+        ).appendDetails()
     }
 
     private fun executeInitialAppsRequest(): OkHttpResponse {
@@ -87,6 +87,10 @@ internal class GetDeveloperAppsRequest(
             append("&hl=").append(params.language)
             append("&gl=").append(params.country)
         }
+    }
+
+    private fun List<App>.appendDetails(): List<App> {
+        return this.map { app -> app.copy(developerId = params.devId) }
     }
 
 }

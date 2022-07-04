@@ -166,17 +166,6 @@ internal object Specs {
         criteria = path(12, 0),
     )
 
-    val CATEGORIES_RESPONSE = CategoriesResponseSpec(
-        apps = path("ds:0", 0, 1, 0, 3, 0, 3),
-        games = path("ds:0", 0, 1, 0, 3, 1, 3),
-        family = path("ds:0", 0, 1, 0, 3, 2, 3),
-    )
-
-    val CATEGORY = CategorySpec(
-        id = path(1, 0),
-        title = path(1, 1)
-    )
-
     val PERMISSIONS_RESPONSE = PermissionsResponseSpec(
         categorized = PermissionsSectionSpec(
             section = path(0, 2, 0),

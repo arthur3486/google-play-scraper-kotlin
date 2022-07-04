@@ -18,22 +18,22 @@ package com.arthurivanets.googleplayscraper.util
 
 import okhttp3.Response
 
-sealed class ScraperError(message: String = "", cause: Throwable? = null) : RuntimeException(message, cause) {
+sealed class ScraperError(message: String = "", cause: Exception? = null) : RuntimeException(message, cause) {
 
     class ResponseParsingError(
         message: String,
-        cause: Throwable? = null
+        cause: Exception? = null
     ): ScraperError(message, cause)
 
     class HttpError(
         val statusCode: Int,
         message: String,
-        cause: Throwable? = null
+        cause: Exception? = null
     ) : ScraperError(message, cause)
 
     class GenericError(
         message: String,
-        cause: Throwable? = null
+        cause: Exception? = null
     ) : ScraperError(message, cause)
 
 }

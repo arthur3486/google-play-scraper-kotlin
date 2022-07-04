@@ -30,7 +30,7 @@ internal fun <T> response(action: () -> T): Response<T, ScraperError> {
             result = null,
             error = error
         )
-    } catch (error: Throwable) {
+    } catch (error: Exception) {
         Response(
             isSuccess = false,
             result = null,

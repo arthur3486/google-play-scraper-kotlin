@@ -25,7 +25,6 @@ data class App(
     val url: String,
     val iconUrl: String,
     val developer: String,
-    val developerId: String,
     val priceText: String?,
     val price: Double?,
     val currency: String?,

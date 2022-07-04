@@ -16,7 +16,6 @@
 
 package com.arthurivanets.googleplayscraper
 
-import com.arthurivanets.googleplayscraper.model.Collection
 import com.arthurivanets.googleplayscraper.specs.*
 import com.arthurivanets.googleplayscraper.util.path
 
@@ -37,6 +36,11 @@ internal object Specs {
     val APPS_RESPONSE = AppsResponseSpec(
         apps = path(0, 2, 0, 0, 0),
         token = path(0, 2, 0, 0, 7, 1)
+    )
+
+    val APPS_LISTING_RESPONSE = AppsResponseSpec(
+        apps = path(0, 2, 0, 1, 0, 28, 0),
+        token = path(0, 2, 0, 1, 0, 0),
     )
 
     val APP_INITIAL_REQUEST = AppSpec(
@@ -79,6 +83,20 @@ internal object Specs {
         priceText = path(7, 0, 3, 2, 1, 0, 2),
         price = path(7, 0, 3, 2, 1, 0, 0),
         currency = path(7, 0, 3, 2, 1, 0, 1),
+    )
+
+    val APP_LISTING = AppSpec(
+        appId = path(0, 0, 0),
+        title = path(0, 3),
+        summary = path(0, 13, 1),
+        score = path(0, 4, 1),
+        scoreText = path(0, 4, 0),
+        url = path(0, 10, 4, 2),
+        iconUrl = path(0, 1, 3, 2),
+        developer = path(0, 14),
+        priceText = path(0, 8, 1, 0, 2),
+        price = path(0, 8, 1, 0, 0),
+        currency = path(0, 8, 1, 0, 1),
     )
 
     val APP_DETAILS = AppDetailsSpec(
@@ -157,58 +175,6 @@ internal object Specs {
     val CATEGORY = CategorySpec(
         id = path(1, 0),
         title = path(1, 1)
-    )
-
-    val ALL_COLLECTIONS = path("ds:3", 0, 1)
-
-    val COLLECTIONS_TOP = CollectionsSpec(
-        clusterUrl = path(0, 3, 4, 2),
-        initialApps = path(0, 0),
-        collections = mapOf(
-            2 to CollectionSpec(
-                Collection.TOP_FREE to path(0),
-                Collection.TOP_PAID to path(1),
-            ),
-            3 to CollectionSpec(
-                Collection.TOP_FREE to path(0),
-                Collection.TOP_PAID to path(1),
-                Collection.GROSSING to path(2),
-            ),
-            4 to CollectionSpec(
-                Collection.TOP_FREE to path(0),
-                Collection.GROSSING to path(1),
-                Collection.TRENDING to path(2),
-                Collection.TOP_PAID to path(3),
-            ),
-            6 to CollectionSpec(
-                Collection.TOP_FREE to path(0),
-                Collection.TOP_PAID to path(1),
-                Collection.GROSSING to path(2),
-                Collection.TOP_FREE_GAMES to path(3),
-                Collection.TOP_PAID_GAMES to path(4),
-                Collection.TOP_GROSSING_GAMES to path(5),
-            ),
-        )
-    )
-
-    val COLLECTIONS_NEW = CollectionsSpec(
-        clusterUrl = path(0, 3, 4, 2),
-        initialApps = path(0, 0),
-        collections = mapOf(
-            1 to CollectionSpec(
-                Collection.NEW_FREE to path(0),
-            ),
-            2 to CollectionSpec(
-                Collection.NEW_FREE to path(0),
-                Collection.NEW_PAID to path(1),
-            ),
-            4 to CollectionSpec(
-                Collection.NEW_FREE to path(0),
-                Collection.NEW_PAID to path(1),
-                Collection.NEW_FREE_GAMES to path(2),
-                Collection.NEW_PAID_GAMES to path(3),
-            ),
-        )
     )
 
     val PERMISSIONS_RESPONSE = PermissionsResponseSpec(

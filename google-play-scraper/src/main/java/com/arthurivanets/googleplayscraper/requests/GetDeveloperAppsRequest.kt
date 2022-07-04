@@ -48,7 +48,7 @@ internal class GetDeveloperAppsRequest(
             initialRequestResultParser = initialAppsResultParser,
             subsequentRequestExecutor = ::executeAppsRequest,
             subsequentRequestResultParser = appsResultParser
-        ).appendDetails()
+        )
     }
 
     private fun executeInitialAppsRequest(): OkHttpResponse {
@@ -87,10 +87,6 @@ internal class GetDeveloperAppsRequest(
             append("&hl=").append(params.language)
             append("&gl=").append(params.country)
         }
-    }
-
-    private fun List<App>.appendDetails(): List<App> {
-        return this.map { app -> app.copy(developerId = params.devId) }
     }
 
 }

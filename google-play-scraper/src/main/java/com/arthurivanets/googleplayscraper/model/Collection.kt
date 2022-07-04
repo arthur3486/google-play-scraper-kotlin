@@ -16,18 +16,10 @@
 
 package com.arthurivanets.googleplayscraper.model
 
-enum class Collection {
+enum class Collection(val clusterName: String) {
 
-    TOP_FREE,
-    TOP_PAID,
-    GROSSING,
-    TRENDING,
-    TOP_FREE_GAMES,
-    TOP_PAID_GAMES,
-    TOP_GROSSING_GAMES,
-    NEW_FREE,
-    NEW_PAID,
-    NEW_FREE_GAMES,
-    NEW_PAID_GAMES,
+    TOP_FREE("topselling_free"),
+    TOP_PAID("topselling_paid"),
+    GROSSING("topgrossing");
 
 }

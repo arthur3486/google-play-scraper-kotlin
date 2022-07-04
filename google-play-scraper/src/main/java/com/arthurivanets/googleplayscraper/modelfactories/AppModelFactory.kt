@@ -51,7 +51,6 @@ internal class AppModelFactory(
             url = (baseUrl + extractedData.require<String>(AppSpec.Key.URL)),
             iconUrl = extractedData.require(AppSpec.Key.ICON_URL),
             developer = extractedData.require(AppSpec.Key.DEVELOPER),
-            developerId = "",
             priceText = priceText,
             price = price,
             currency = priceText?.extractCurrency(),

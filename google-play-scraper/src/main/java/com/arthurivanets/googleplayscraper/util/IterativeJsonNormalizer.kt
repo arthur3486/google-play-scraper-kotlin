@@ -80,7 +80,7 @@ internal class IterativeJsonNormalizer(
                         replacementAction(normalizedPrimitive)
                         outPendingTraversals.push(normalizedPrimitive)
                     }
-                } catch (error: Throwable) {
+                } catch (error: Exception) {
                     // do nothing
                 }
             }

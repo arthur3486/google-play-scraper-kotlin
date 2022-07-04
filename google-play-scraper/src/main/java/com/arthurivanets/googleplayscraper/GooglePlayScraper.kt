@@ -16,11 +16,13 @@
 
 package com.arthurivanets.googleplayscraper
 
-import com.arthurivanets.googleplayscraper.model.*
+import com.arthurivanets.googleplayscraper.model.App
+import com.arthurivanets.googleplayscraper.model.AppDetails
+import com.arthurivanets.googleplayscraper.model.AppReview
+import com.arthurivanets.googleplayscraper.model.Permission
 import com.arthurivanets.googleplayscraper.modelfactories.AppDetailsModelFactory
 import com.arthurivanets.googleplayscraper.modelfactories.AppModelFactory
 import com.arthurivanets.googleplayscraper.modelfactories.AppReviewModelFactory
-import com.arthurivanets.googleplayscraper.modelfactories.CategoryModelFactory
 import com.arthurivanets.googleplayscraper.parsers.*
 import com.arthurivanets.googleplayscraper.requests.*
 import com.arthurivanets.googleplayscraper.util.*
@@ -56,16 +58,6 @@ class GooglePlayScraper(private val config: Config = Config()) {
     }
 
     private val appsLoadingRequestFactory by lazy { DefaultAppsLoadingRequestFactory(baseUrl) }
-
-    private val categoriesResultParser by lazy {
-        CategoriesResultParser(
-            responseSpec = Specs.CATEGORIES_RESPONSE,
-            categorySpec = Specs.CATEGORY,
-            pathProcessor = pathProcessor,
-            responseJsonExtractor = responseJsonExtractor,
-            categoryModelFactory = CategoryModelFactory(pathProcessor),
-        )
-    }
 
     private val appsClusterUrlResultParser by lazy {
         AppsClusterUrlResultParser(
@@ -154,14 +146,6 @@ class GooglePlayScraper(private val config: Config = Config()) {
         private val HTTP_READ_TIMEOUT = Duration.ofSeconds(60)
         private val HTTP_WRITE_TIMEOUT = Duration.ofSeconds(60)
 
-    }
-
-    fun getCategories(): Request<List<Category>> {
-        return GetCategoriesRequest(
-            baseUrl = baseUrl,
-            httpClient = httpClient,
-            requestResultParser = categoriesResultParser
-        )
     }
 
     fun getAppDetails(params: GetAppDetailsParams): Request<AppDetails> {

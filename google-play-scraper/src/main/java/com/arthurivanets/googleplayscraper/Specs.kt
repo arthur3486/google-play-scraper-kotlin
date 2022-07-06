@@ -28,6 +28,15 @@ internal object Specs {
         token = path("ds:3", 0, 1, 0, 21, 1, 3, 1),
     )
 
+    val APP_SEARCH_INITIAL_RESPONSE = AppSearchResponseSpec(
+        featuredAppsSectionIndicator = path("ds:4", 0, 1, 0, 23, 16, 11, 0, 0),
+        noResultsSectionIndicator = path("ds:4", 0, 1, 0, 25, 0, 0, 0, 1),
+        featuredApp = path("ds:4", 0, 1, 0, 23),
+        apps = path("ds:4", 0, 1, 0, 22, 0),
+        moreApps = path("ds:4", 0, 1, 2, 22, 0),
+        moreResultsToken = path("ds:4", 0, 1, 0, 22, 1, 3, 1),
+    )
+
     val APPS_DEV_ID_NAN_INITIAL_RESPONSE = AppsResponseSpec(
         apps = path("ds:3", 0, 1, 0, 22, 0),
         token = path("ds:3", 0, 1, 0, 22, 1, 3, 1),
@@ -69,6 +78,34 @@ internal object Specs {
         priceText = path(0, 8, 1, 0, 2),
         price = path(0, 8, 1, 0, 0),
         currency = path(0, 8, 1, 0, 1),
+    )
+
+    val APP_SEARCH = AppSpec(
+        appId = path(0, 0, 0),
+        title = path(0, 3),
+        summary = path(0, 13, 1),
+        score = path(0, 4, 1),
+        scoreText = path(0, 4, 0),
+        url = path(0, 10, 4, 2),
+        iconUrl = path(0, 1, 3, 2),
+        developer = path(0, 14),
+        priceText = path(0, 8, 1, 0, 2),
+        price = path(0, 8, 1, 0, 0),
+        currency = path(0, 8, 1, 0, 1),
+    )
+
+    val APP_SEARCH_FEATURED = AppSpec(
+        appId = path(16, 11, 0, 0),
+        title = path(16, 2, 0, 0),
+        summary = path(16, 2, 73, 0, 1),
+        score = path(16, 2, 51, 0, 1),
+        scoreText = path(16, 2, 51, 0, 0),
+        url = path(17, 0, 0, 4, 2),
+        iconUrl = path(16, 2, 95, 0, 3, 2),
+        developer = path(16, 2, 68, 0),
+        priceText = path(16, 2, 57, 0, 0, 0, 0, 1, 0, 2),
+        price = path(16, 2, 57, 0, 0, 0, 0, 1, 0, 0),
+        currency = path(16, 2, 57, 0, 0, 0, 0, 1, 0, 1),
     )
 
     val APP = AppSpec(

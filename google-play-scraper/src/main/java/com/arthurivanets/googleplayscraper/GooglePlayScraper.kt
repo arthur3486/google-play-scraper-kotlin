@@ -77,6 +77,17 @@ class GooglePlayScraper(private val config: Config = Config()) {
         )
     }
 
+    private val appsSearchInitialRequestResultParser by lazy {
+        AppSearchResultParser(
+            responseSpec = Specs.APP_SEARCH_INITIAL_RESPONSE,
+            featuredAppSpec = Specs.APP_SEARCH_FEATURED,
+            appSpec = Specs.APP_SEARCH,
+            pathProcessor = pathProcessor,
+            appModelFactory = appModelFactory,
+            responseJsonExtractor = appsResponseJsonExtractor
+        )
+    }
+
     private val appsDevIdNanInitialRequestResultParser by lazy {
         AppsResultParser(
             responseSpec = Specs.APPS_DEV_ID_NAN_INITIAL_RESPONSE,
@@ -211,7 +222,7 @@ class GooglePlayScraper(private val config: Config = Config()) {
             baseUrl = baseUrl,
             httpClient = httpClient,
             appsLoadingRequestFactory = appsLoadingRequestFactory,
-            initialRequestResultParser = appsInitialRequestResultParser,
+            initialRequestResultParser = appsSearchInitialRequestResultParser,
             requestResultParser = appsResultParser
         )
     }

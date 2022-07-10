@@ -63,24 +63,6 @@ val scraper = GooglePlayScraper(
 
 <details>
   <summary>
-    <b>Categories</b> - retrieves the available app categories.
-  </summary>
-
-```kotlin
-val response = scraper.getCategories().execute()
-
-if (response.isSuccess) {
-    val categories = response.requireResult()
-    // do something with the obtained categories
-} else {
-    val error = response.requireError()
-    // do something with the error
-}
-```
-</details>
-
-<details>
-  <summary>
     <b>App Details</b> - retrieves the detailed information about a specified app.
   </summary>
 

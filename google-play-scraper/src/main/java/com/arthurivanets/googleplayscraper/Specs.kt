@@ -21,7 +21,7 @@ import com.arthurivanets.googleplayscraper.util.path
 
 internal object Specs {
 
-    val CLUSTER_URL = path("ds:7", 1, 1, 0, 0, 3, 4, 2)
+    val CLUSTER_URL = path("ds:6", 1, 1, 0, 21, 1, 2, 4, 2)
 
     val APPS_INITIAL_RESPONSE = AppsResponseSpec(
         apps = path("ds:3", 0, 1, 0, 21, 0),

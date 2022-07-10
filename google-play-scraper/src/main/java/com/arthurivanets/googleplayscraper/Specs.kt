@@ -156,6 +156,8 @@ internal object Specs {
         inAppPurchasesPriceRange = path("ds:4", 1, 2, 19, 0),
         appSize = path("ds:8", 0),
         androidVersion = path("ds:4", 1, 2, 140, 1, 1, 0, 0, 1),
+        androidMinSdkVersion = path("ds:4", 1, 2, 140, 1, 1, 0, 0, 0),
+        androidTargetSdkVersion = path("ds:4", 1, 2, 140, 1, 0, 0, 0),
         developer = path("ds:4", 1, 2, 68, 0),
         developerId = path("ds:4", 1, 2, 68, 1, 4, 2),
         developerInternalId = path("ds:4", 1, 2, 68, 1, 4, 2),

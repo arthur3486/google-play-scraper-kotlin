@@ -81,6 +81,8 @@ internal class AppDetailsModelFactory(
             appSize = "",//TODO Unavailable since 05/2022: extractedData.require(Key.APP_SIZE),
             androidVersion = rawAppVersion?.normalizeAndroidVersion(),
             androidVersionText = rawAppVersion,
+            androidMinSdkVersion = extractedData.getOrNull(Key.ANDROID_MIN_SDK_VERSION),
+            androidTargetSdkVersion = extractedData.getOrNull(Key.ANDROID_TARGET_SDK_VERSION),
             developer = extractedData.require(Key.DEVELOPER),
             developerId = extractedData.require<String>(Key.DEVELOPER_ID).extractDeveloperId(),
             developerInternalId = extractedData.require(Key.DEVELOPER_INTERNAL_ID),

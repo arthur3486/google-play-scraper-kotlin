@@ -18,13 +18,8 @@ package com.arthurivanets.googleplayscraper.requests
 
 import com.arthurivanets.googleplayscraper.model.App
 import com.arthurivanets.googleplayscraper.parsers.ResultParser
-import com.arthurivanets.googleplayscraper.util.PagedResult
-import com.arthurivanets.googleplayscraper.util.fetchContinuously
-import com.arthurivanets.googleplayscraper.util.peekBody
-import com.arthurivanets.googleplayscraper.util.ScraperError
+import com.arthurivanets.googleplayscraper.util.*
 import okhttp3.OkHttpClient
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 import java.util.regex.Pattern
 import okhttp3.Request as OkHttpRequest
 import okhttp3.Response as OkHttpResponse
@@ -92,14 +87,15 @@ internal class SearchAppsRequest(
     }
 
     private fun createInitialRequestUrl(): String {
-        val query = URLEncoder.encode(params.query, StandardCharsets.UTF_8)
+        val query = UriComponent(params.query).encode()
 
         return buildString {
             append(baseUrl).append("/store/search")
-            append("?c=apps")
-            append("&q=").append(query)
+            append("?q=").append(query)
+            append("&c=apps")
             append("&hl=").append(params.language)
             append("&gl=").append(params.country)
+            append("&androidId=").append(generateRandomAndroidId())
         }
     }
 
@@ -114,6 +110,11 @@ internal class SearchAppsRequest(
         )
             .let(httpClient::newCall)
             .execute()
+    }
+
+    private fun generateRandomAndroidId(): Long {
+        val idRange = 1L..1000000000000000000L
+        return idRange.random()
     }
 
 }

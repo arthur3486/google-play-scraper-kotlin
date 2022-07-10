@@ -43,6 +43,8 @@ data class AppDetails(
     val appSize: String,
     val androidVersion: String?,
     val androidVersionText: String?,
+    val androidMinSdkVersion: Int?,
+    val androidTargetSdkVersion: Int?,
     val developer: String,
     val developerId: String,
     val developerInternalId: String,

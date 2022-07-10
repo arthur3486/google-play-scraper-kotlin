@@ -38,6 +38,8 @@ internal class AppDetailsSpec(
     val inAppPurchasesPriceRange: Path,
     val appSize: Path,
     val androidVersion: Path,
+    val androidMinSdkVersion: Path,
+    val androidTargetSdkVersion: Path,
     val developer: Path,
     val developerId: Path,
     val developerInternalId: Path,
@@ -96,6 +98,8 @@ internal class AppDetailsSpec(
         Key.IAP_PRICE_RANGE to inAppPurchasesPriceRange,
         Key.APP_SIZE to appSize,
         Key.ANDROID_VERSION to androidVersion,
+        Key.ANDROID_MIN_SDK_VERSION to androidMinSdkVersion,
+        Key.ANDROID_TARGET_SDK_VERSION to androidTargetSdkVersion,
         Key.PRIVACY_POLICY_URL to privacyPolicyUrl,
         Key.GENRE to genre,
         Key.GENRE_ID to genreId,
@@ -143,6 +147,8 @@ internal class AppDetailsSpec(
         const val IAP_PRICE_RANGE = "iap_price_range"
         const val APP_SIZE = "app_size"
         const val ANDROID_VERSION = "android_version"
+        const val ANDROID_MIN_SDK_VERSION = "android_min_sdk_version"
+        const val ANDROID_TARGET_SDK_VERSION = "android_target_sdk_version"
         const val PRIVACY_POLICY_URL = "privacy_policy_url"
         const val GENRE = "genre"
         const val GENRE_ID = "genre_id"

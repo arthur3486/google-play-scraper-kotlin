@@ -19,8 +19,6 @@ package com.arthurivanets.googleplayscraper.requests
 import com.arthurivanets.googleplayscraper.model.App
 import com.arthurivanets.googleplayscraper.parsers.ResultParser
 import com.arthurivanets.googleplayscraper.util.*
-import com.arthurivanets.googleplayscraper.util.ScraperError
-import com.arthurivanets.googleplayscraper.util.httpError
 import okhttp3.OkHttpClient
 import okhttp3.Request as OkHttpRequest
 import okhttp3.Response as OkHttpResponse
@@ -103,9 +101,11 @@ internal class GetSimilarAppsRequest(
     }
 
     private fun createClusterRequestUrl(): String {
+        val appId = UriComponent(params.appId).encode()
+
         return buildString {
             append(baseUrl).append("/store/apps/details")
-            append("?id=").append(params.appId)
+            append("?id=").append(appId)
             append("&hl=").append(params.language)
             append("&gl=").append(params.country)
         }

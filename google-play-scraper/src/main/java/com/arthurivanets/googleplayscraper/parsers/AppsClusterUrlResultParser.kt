@@ -16,12 +16,7 @@
 
 package com.arthurivanets.googleplayscraper.parsers
 
-import com.arthurivanets.googleplayscraper.util.ScraperError
 import com.arthurivanets.googleplayscraper.util.*
-import com.arthurivanets.googleplayscraper.util.Path
-import com.arthurivanets.googleplayscraper.util.PathProcessor
-import com.arthurivanets.googleplayscraper.util.ResponseJsonExtractor
-import com.arthurivanets.googleplayscraper.util.inferType
 import com.google.gson.JsonElement
 
 internal class AppsClusterUrlResultParser(

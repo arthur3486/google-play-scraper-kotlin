@@ -20,7 +20,7 @@ plugins {
 }
 
 group "com.arthurivanets"
-version "1.1.0"
+version "1.1.1"
 
 test {
     useJUnitPlatform()
@@ -43,7 +43,7 @@ dependencies {
 ext {
     PUBLISHING_GROUP_ID = "com.arthurivanets"
     PUBLISHING_ARTIFACT_ID = "google-play-scraper"
-    PUBLISHING_ARTIFACT_VERSION = "1.1.0"
+    PUBLISHING_ARTIFACT_VERSION = "1.1.1"
     PUBLISHING_ARTIFACT_DESCRIPTION = publishingLibraryDescription
 }
 

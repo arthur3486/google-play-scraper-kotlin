@@ -17,7 +17,6 @@
 package com.arthurivanets.googleplayscraper.util
 
 import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 @JvmInline
 value class UriComponent(val value: String)
@@ -28,7 +27,7 @@ fun UriComponent.encode(): String {
     }
 
     val encodedValue = try {
-        URLEncoder.encode(this.value, StandardCharsets.UTF_8)
+        URLEncoder.encode(this.value, "UTF-8")
     } catch (e: Exception) {
         throw e
     }

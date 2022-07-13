@@ -38,7 +38,7 @@ internal class DefaultScriptDataParser(private val gson: Gson) : ScriptDataParse
             )
         }
         private val PATTERN_KEY by lazy { Pattern.compile("'(ds:.*?)'") }
-        private val PATTERN_VALUE by lazy { Pattern.compile("data:([\\s\\S]*?), sideChannel: \\{}}\\);</") }
+        private val PATTERN_VALUE by lazy { Pattern.compile("data:([\\s\\S]*?), sideChannel: \\{\\}\\}\\);</") }
 
     }
 

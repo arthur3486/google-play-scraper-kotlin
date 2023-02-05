@@ -18,9 +18,10 @@ package com.arthurivanets.googleplayscraper.requests
 
 import com.arthurivanets.googleplayscraper.model.Permission
 import com.arthurivanets.googleplayscraper.parsers.ResultParser
-import com.arthurivanets.googleplayscraper.util.requireBody
 import com.arthurivanets.googleplayscraper.util.ScraperError
+import com.arthurivanets.googleplayscraper.util.consumeSafely
 import com.arthurivanets.googleplayscraper.util.httpError
+import com.arthurivanets.googleplayscraper.util.requireBody
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -41,14 +42,14 @@ internal class GetAppPermissionsRequest(
 ) : Request<List<Permission>> {
 
     override fun execute(): Response<List<Permission>, ScraperError> = response {
-        val response = executeRequest()
-
-        if (response.isSuccessful) {
-            response.requireBody()
-                .string()
-                .let(permissionsResultParser::parse)
-        } else {
-            throw httpError(response)
+        executeRequest().consumeSafely { response ->
+            if (response.isSuccessful) {
+                response.requireBody()
+                    .string()
+                    .let(permissionsResultParser::parse)
+            } else {
+                throw httpError(response)
+            }
         }
     }
 

@@ -77,6 +77,7 @@ internal class SearchAppsRequest(
             val matcher = CLUSTER_PAGE_PATTERN.matcher(body)
 
             if (matcher.find()) {
+                response.closeSafely()
                 executeRequest(baseUrl + matcher.group(1))
             } else {
                 response

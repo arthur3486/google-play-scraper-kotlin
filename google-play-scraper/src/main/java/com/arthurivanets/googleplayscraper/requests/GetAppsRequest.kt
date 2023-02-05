@@ -20,10 +20,7 @@ import com.arthurivanets.googleplayscraper.model.App
 import com.arthurivanets.googleplayscraper.model.Category
 import com.arthurivanets.googleplayscraper.model.Collection
 import com.arthurivanets.googleplayscraper.parsers.ResultParser
-import com.arthurivanets.googleplayscraper.util.PagedResult
-import com.arthurivanets.googleplayscraper.util.ScraperError
-import com.arthurivanets.googleplayscraper.util.httpError
-import com.arthurivanets.googleplayscraper.util.requireBody
+import com.arthurivanets.googleplayscraper.util.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -47,15 +44,15 @@ internal class GetAppsRequest(
 ) : Request<List<App>> {
 
     override fun execute(): Response<List<App>, ScraperError> = response {
-        val response = executeRequest()
-
-        if (response.isSuccessful) {
-            response.requireBody()
-                .string()
-                .let(requestResultParser::parse)
-                .result
-        } else {
-            throw httpError(response)
+        executeRequest().consumeSafely { response ->
+            if (response.isSuccessful) {
+                response.requireBody()
+                    .string()
+                    .let(requestResultParser::parse)
+                    .result
+            } else {
+                throw httpError(response)
+            }
         }
     }
 

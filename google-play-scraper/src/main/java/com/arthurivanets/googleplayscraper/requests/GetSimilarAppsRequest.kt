@@ -75,19 +75,19 @@ internal class GetSimilarAppsRequest(
     }
 
     private fun getClusterUrl(): String {
-        val response = executeClusterUrlRequest()
+        return executeClusterUrlRequest().consumeSafely { response ->
+            if (response.isSuccessful) {
+                val rawBody = response.requireBody().string()
+                val clusterUrl = clusterUrlResultParser.parse(rawBody)
 
-        return if (response.isSuccessful) {
-            val rawBody = response.requireBody().string()
-            val clusterUrl = clusterUrlResultParser.parse(rawBody)
-
-            buildString {
-                append(baseUrl).append(clusterUrl)
-                append("&gl=").append(params.country)
-                append("&hl=").append(params.language)
+                buildString {
+                    append(baseUrl).append(clusterUrl)
+                    append("&gl=").append(params.country)
+                    append("&hl=").append(params.language)
+                }
+            } else {
+                throw httpError(response)
             }
-        } else {
-            throw httpError(response)
         }
     }
 

@@ -19,6 +19,7 @@ package com.arthurivanets.googleplayscraper.requests
 import com.arthurivanets.googleplayscraper.model.AppDetails
 import com.arthurivanets.googleplayscraper.parsers.ResultParser
 import com.arthurivanets.googleplayscraper.util.ScraperError
+import com.arthurivanets.googleplayscraper.util.consumeSafely
 import com.arthurivanets.googleplayscraper.util.httpError
 import com.arthurivanets.googleplayscraper.util.requireBody
 import okhttp3.OkHttpClient
@@ -39,15 +40,15 @@ internal class GetAppDetailsRequest(
 ) : Request<AppDetails> {
 
     override fun execute(): Response<AppDetails, ScraperError> = response {
-        val response = executeRequest()
-
-        if (response.isSuccessful) {
-            response.requireBody()
-                .string()
-                .let(requestResultParser::parse)
-                .appendDetails()
-        } else {
-            throw httpError(response)
+        executeRequest().consumeSafely { response ->
+            if (response.isSuccessful) {
+                response.requireBody()
+                    .string()
+                    .let(requestResultParser::parse)
+                    .appendDetails()
+            } else {
+                throw httpError(response)
+            }
         }
     }
 

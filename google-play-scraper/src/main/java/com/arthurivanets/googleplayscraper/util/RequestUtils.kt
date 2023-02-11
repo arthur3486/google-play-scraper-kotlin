@@ -49,27 +49,46 @@ internal fun <T> fetchContinuously(
 
     while (pendingRequests.isNotEmpty()) {
         val request = pendingRequests.poll()
-        val response = request.executor()
 
-        if (response.isSuccessful) {
-            val rawBody = response.requireBody().string()
-            val result = request.resultParser.parse(rawBody)
-            val pagingToken = result.nextToken
+        request.executor().consumeSafely { response ->
+            if (response.isSuccessful) {
+                val rawBody = response.requireBody().string()
+                val result = request.resultParser.parse(rawBody)
+                val pagingToken = result.nextToken
 
-            fetchedItems.addAll(result.result)
+                fetchedItems.addAll(result.result)
 
-            if ((fetchedItems.size < itemCount) && (pagingToken != null)) {
-                pendingRequests.offer(
-                    PendingRequest(
-                        executor = { subsequentRequestExecutor(pagingToken) },
-                        resultParser = subsequentRequestResultParser
+                if ((fetchedItems.size < itemCount) && (pagingToken != null)) {
+                    pendingRequests.offer(
+                        PendingRequest(
+                            executor = { subsequentRequestExecutor(pagingToken) },
+                            resultParser = subsequentRequestResultParser
+                        )
                     )
-                )
+                }
+            } else {
+                throw httpError(response)
             }
-        } else {
-            throw httpError(response)
         }
     }
 
     return fetchedItems.take(itemCount)
+}
+
+internal fun <R> Response.consumeSafely(block: (Response) -> R): R {
+    return try {
+        block(this)
+    } finally {
+        closeSafely()
+    }
+}
+
+internal fun Response.closeSafely() {
+    try {
+        if (body != null) {
+            body?.close()
+        }
+    } catch (error: Throwable) {
+        // ignoring all "close" exceptions
+    }
 }

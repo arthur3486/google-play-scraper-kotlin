@@ -23,7 +23,7 @@ sealed class ScraperError(message: String = "", cause: Exception? = null) : Runt
     class ResponseParsingError(
         message: String,
         cause: Exception? = null
-    ): ScraperError(message, cause)
+    ) : ScraperError(message, cause)
 
     class HttpError(
         val statusCode: Int,
